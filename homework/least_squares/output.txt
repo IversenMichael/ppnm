@@ -1,0 +1,7 @@
+The fitting coefficients are a = 141.333899083703, lambda = 0.172070796448845
+The Sigma matrix is = 
+0.00100649364942056	-0.000107776542279024	
+-0.000107776542279021	1.62343460840809E-05	
+From the measurements we find the half life of Ra-224: 4.02826740426003 days
+The correct half life of Ra-224 is 3.6 days
+With uncertainties, the half life is between 3.93394203299138 and 4.12259277552867

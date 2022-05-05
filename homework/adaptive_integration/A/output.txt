@@ -1,0 +1,4 @@
+Integral of sqrt(x) = 2/3. Numerical result = 0.666953909054655
+Integral of 1/sqrt(x) = 2. Numerical result = 1.99996150007805
+Integral of 4*sqrt(1-x^2) = pi. Numerical result = 3.14168489828595
+Integral of ln(x)/sqrt(x) = -4. Numerical result = -3.9999521745773

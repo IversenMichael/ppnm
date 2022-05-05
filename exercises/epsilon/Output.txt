@@ -1,0 +1,13 @@
+Max integer: i = 2147483647
+-2147483648
+int.MaxValue = 2147483647
+Min integer: i = -2147483648
+int.MinValue = -2147483648
+x = 1.11022302462516E-16
+x = 2.22044604925031E-16
+y = 1.192093E-07
+tiny = 1.11022302462516E-16
+sum_a = 1.11022302462516E-10
+sum_b = 0
+approx(1, 2) = False
+approx(1, 1) = True

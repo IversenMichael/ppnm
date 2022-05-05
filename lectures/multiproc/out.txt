@@ -1,0 +1,6 @@
+N = 1E+08
+Summing from 1 to 50000000
+Summing from 50000000 to 100000001
+Sum is equal to sum = 18.3047492182933
+Sum is equal to sum = 0.693147195559714
+harm sum from 1 to 100000001 is equal to 18.997896413853

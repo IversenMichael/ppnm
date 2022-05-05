@@ -1,0 +1,10 @@
+Integral of 1/Sqrt(x) = 1.99999995996608. The answer should be 2.
+Comparison with and without variable transformation.
+With variable transformation: The function was called 60 times
+Without variable transformation: The function was called 21416 times
+
+Integral of ln(x)/Sqrt(x) = -3.99999931415998. The answer should be -4.
+Comparison with and without variable transformation.
+With variable transformation: The function was called 368 times
+Without variable transformation: The function was called 30200 times
+

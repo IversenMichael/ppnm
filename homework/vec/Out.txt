@@ -1,0 +1,12 @@
+Using constructor without input: u = 0, 0, 0
+Using constructor with input 1, 2, 3: v = 1, 2, 3
+Defining yet another vector for illustrating arithmetic: w = 4, 5, 6
+Adding v and w: v + w = 5, 7, 9
+Subtracting v and w: v - w = -3, -3, -3
+Multiplying v by c from the left: c * v = 3, 6, 9
+Multiplying v by c from the right: v * c = 3, 6, 9
+Dot product between v and w: v dot w = 32
+Norm of vector v: norm(v) = 3.74165738677394
+I have overwritten the ToString method. When called from v it now returns: vector = (1, 2, 3)
+Approximate method compares v and u: False
+Approximate method compares v with itself: True

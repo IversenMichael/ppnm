@@ -1,0 +1,37 @@
+We test the performance of the two different implementations by running the code for different values of x
+-------------------------------------
+x = 0
+Number of calls = 8
+erf(x) = 0
+Number of calls = 64
+erf_new(x) = -1.49092217460733E-07
+-------------------------------------
+x = 1
+Number of calls = 32
+erf(x) = 0.842700786678431
+Number of calls = 48
+erf_new(x) = 0.842700712327242
+-------------------------------------
+x = 2
+Number of calls = 48
+erf(x) = 0.995322065658113
+Number of calls = 32
+erf_new(x) = 0.995322174918659
+-------------------------------------
+x = 3
+Number of calls = 56
+erf(x) = 0.999977878183746
+Number of calls = 8
+erf_new(x) = 0.999979108334111
+-------------------------------------
+x = 4
+Number of calls = 56
+erf(x) = 0.999999970039942
+Number of calls = 8
+erf_new(x) = 0.999999987263985
+-------------------------------------
+x = 5
+Number of calls = 72
+erf(x) = 0.999999949158944
+Number of calls = 8
+erf_new(x) = 0.999999999998805

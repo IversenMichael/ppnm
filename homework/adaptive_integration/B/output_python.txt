@@ -1,0 +1,5 @@
+The result from c# are compared with pythons standard integation library
+Integral of 1/sqrt(x) equals 1.9999999999999984
+The function was called 231 times
+Integral of ln(x)/sqrt(x) equals -4.000000000000071
+The function was calleod 315 times

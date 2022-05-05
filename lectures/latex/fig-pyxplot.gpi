@@ -1,0 +1,8 @@
+set terminal pdf
+set output "gamma.pyx.pdf"
+set size 6
+plot\
+"out.gamma.txt" with lines title "$\Gamma(x)$"\
+,"tab.gamma.txt" with points title "tabulated data"
+
+

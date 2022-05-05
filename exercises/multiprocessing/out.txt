@@ -1,0 +1,4 @@
+Finding harmonic sum using a single thread
+harmonic sum from 1 to 1000000000 equals 21.3004815023485
+Finding harmonic sun using two threads
+harmonic sum from 1 to 1000000000 equals 21.3004815043488

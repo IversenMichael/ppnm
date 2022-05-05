@@ -1,0 +1,8 @@
+This goes to stdout
+This goes to stdout
+Another stdout
+line = -1.234e-5 99.9e+5
+word = -1.234e-5
+x = -1.234E-05
+word = 99.9e+5
+x = 9990000

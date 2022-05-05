@@ -1,0 +1,7 @@
+Initial size of list = 0
+We push the number 42 to the list
+Now the list has size = 1
+And the first entry is = 42
+We push the number -13 to the list
+Now the list has size = 2
+And the second entry is = -13

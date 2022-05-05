@@ -1,0 +1,14 @@
+sqrt(-1) = 6.12e-17+1i
+Is sqrt(-1) = i? Answer = True
+sqrt(i) = 0.707+0.707i
+Is sqrt(i) = 0.707 + 0.707i? Answer = True
+exp(i) = 0.54+0.841i
+Is exp(i) = 0.540 + 0.841i? Answer = True
+exp(i*pi) = 0.54+0.841i
+Is exp(i*pi) = -1? Answer = True
+i^i = 0.208+0i
+Is i^i = exp(-pi/2)? Answer = True
+ln(i) = 0+1.57i
+Is ln(i) = i*pi/2? Answer = True
+sin(i*pi) = 0+11.5i
+Is sin(i*pi) = i*sinh(pi)? Answer = True

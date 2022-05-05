@@ -1,0 +1,19 @@
+Finding the root of f(x, y) = (x+1)^4 + (y-2)^4
+The initial point of the method is (x0, y0) = (0, 0)
+Quasi-Newton method finds the root (x, y) = (-0.997764207390339 1.99370249169075) in 49181 iterations
+The correct root is (x, y) = (-1, 2)
+
+Finding the root of the Rosenbrock's valley function
+The initial point of the method is (x0, y0) = (0, 0)
+Quasi-Newton method finds the root (x, y) = (0.999995478973508 0.999990949750639) in 23 iterations
+The correct root is (x, y) = (1, 1)
+
+Finding the root of the Himmelblau's function
+The initial point of the method is (x0, y0) = (0, 0)
+Quasi-Newton method finds the root (x, y) = (2.9999999928107 1.99999999714523) in 11 iterations
+The correct roots are: 
+(x, y) = (3, 2)
+(x, y) = (-2.80, 3.13)
+(x, y) = (-3.78, -3.28)
+(x, y) = (3.58, -1.85)
+

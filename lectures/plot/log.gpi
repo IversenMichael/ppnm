@@ -1,0 +1,8 @@
+set terminal png 
+set output 'erf.pyxplot.png'
+set xlabel 'x' 
+set ylabel 'y' 
+set title 'error function' 
+       	set key left top 
+plot [-2:2] [-1:1] 'erf.data.txt' index 0 using 1:2 with lines title 'error function', 'erf.tab.txt' with points pointtype 2 title 'tab' 
+

@@ -1,0 +1,10 @@
+p values
+1
+1
+1
+1
+c values
+0
+0
+0
+0
