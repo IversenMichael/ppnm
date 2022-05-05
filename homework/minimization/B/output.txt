@@ -1,0 +1,5 @@
+Fitting parameters
+A = 9.87616991679019
+m = 125.972187802248
+Gamma = -2.08632147754085
+Number of iterations = 1699

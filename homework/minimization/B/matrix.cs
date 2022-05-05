@@ -1,0 +1,133 @@
+using static System.Console;
+using static System.Math;
+public class matrix{
+	public readonly int size1, size2;
+	private double[,] data;
+	
+	/* Constructor */
+	public matrix(int n, int m){
+		size1 = n;
+		size2 = m;
+		data = new double[size1, size2];
+	}
+
+	/* Indexer */
+	public double this[int i, int j]{
+		get => data[i, j];
+		set => data[i, j] = value;
+	}
+
+	/* Plus */
+	public static matrix operator + (matrix A, matrix B){
+		var C = new matrix(A.size1, A.size2);
+		for (int i=0; i<A.size1; i++){
+			for (int j=0; j<A.size2; j++){
+				C[i, j] = A[i, j] + B[i, j];
+			}
+		}
+		return C;
+	}
+
+	/* Minus */
+	public static matrix operator - (matrix A, matrix B){
+		return A + (B * (-1));
+	}
+
+	public static matrix operator - (matrix A){
+		return A*(-1);
+	}
+	
+	/* Scalar multiplication */
+	public static matrix operator * (matrix A, double k){
+		var C = new matrix(A.size1, A.size2);
+		for (int i=0; i<A.size1; i++){
+			for (int j=0; j<A.size2; j++){
+				C[i, j] = k * A[i, j];
+			}
+		}
+		return C;
+	}
+	
+	/* Matrix multiplication */
+	public static matrix operator * (matrix A, matrix B){
+		var C = new matrix(A.size1, B.size2);
+		for (int i=0; i<A.size1; i++){
+			for (int j=0; j<B.size2; j++){
+				C[i, j] = 0;
+				for (int k=0; k<A.size2; k++){
+					C[i, j] += A[i, k] * B[k, j];
+				}
+			}
+		}
+		return C;
+	}
+
+	/* Multiplication by vector */
+	public static vector operator * (matrix A, vector v){
+		var w = new vector(A.size1);
+		for (int i=0; i<w.size; i++){
+			w[i] = 0;
+			for (int j=0; j<v.size; j++){
+				w[i] += A[i, j] * v[j];
+			}
+		}
+		return w;
+	}	
+
+	/* Inner product of two columns */
+	public double dot(int i, int j){ /* Two columns in this matrix */
+		double result = 0;
+		for(int k=0; k<size1; k++){
+			result += data[k, i] * data[k, j];
+		}
+		return result;
+	}
+
+	public double dot(matrix A, int i, int j){ /* One column in this matrix and one column in another matrix */
+		double result = 0;
+		for(int k=0; k<size1; k++){
+			result += data[k, i] * A[k, j];
+		}
+		return result;
+	}
+
+	public void print(){
+		for(int i=0; i<size1; i++){
+			for(int j=0; j<size2; j++){
+				Write($"{data[i, j]}\t");
+			}
+			WriteLine();
+		}
+	}
+	
+	public matrix transpose(){
+		matrix A = new matrix(this.size2, this.size1);
+		for (int i=0; i<this.size2; i++){
+			for (int j=0; j<this.size1; j++){
+				A[i, j] = this[j, i];
+			}
+		}
+		return A;
+	
+	}
+	
+	public matrix round(){
+		matrix A = new matrix(this.size1, this.size2);
+		for (int i=0; i<this.size1; i++){
+			for (int j=0; j<this.size2; j++){
+				A[i, j] = Round(this[i, j], 3);
+			}
+		}
+		return A;
+	}
+
+	public matrix copy(){
+		matrix A = new matrix(this.size1, this.size2);
+		for (int i=0; i<this.size1; i++){
+			for (int j=0; j<this.size2; j++){
+				A[i, j] = this[i, j];
+			}
+		}
+		return A;
+	}
+}
