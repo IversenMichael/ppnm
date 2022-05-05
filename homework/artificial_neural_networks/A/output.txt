@@ -1,0 +1,24 @@
+        -1          0          1          1          1          1          0          0          0 
+We consider the function g(x) = cos(5x-1)*exp(-x^2)
+Neural network with 3 hidden neurons has been trained to interpolate the function
+We use the following training points
+(x, y) = (-1, 0.35322690848236)
+(x, y) = (-0.714285714285714, -0.0843488475452459)
+(x, y) = (-0.428571428571429, -0.832206835368328)
+(x, y) = (-0.142857142857143, -0.140108766172426)
+(x, y) = (0.142857142857143, 0.940078204988361)
+(x, y) = (0.428571428571429, 0.34536337259437)
+(x, y) = (0.714285714285714, -0.505401482615896)
+(x, y) = (1, -0.240462049968584)
+We find the following fitting parameters
+a_0 = -0.622766424966547
+a_1 = -0.153252808489061
+a_2 = 0.462891942615092
+b_0 = 0.454810819751426
+b_1 = 0.420478373574872
+b_2 = 0.37997884713675
+w_0 = -0.946914589574159
+w_1 = 1.18960504659258
+w_2 = -1.2636833606396
+The interpolation is illustrated in the figure plot.png
+This figure shows the interpolation, exact function and training points
