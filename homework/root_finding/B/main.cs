@@ -25,7 +25,7 @@ public static class main{
         };
 
         // Starting point
-        vector E0 = new vector(-3);
+        vector E0 = new vector(-0.25);
         vector result = Newton(M, E0);
         result.print();
         M(result).print();

@@ -1,0 +1,28 @@
+MAXIMUM REPRESENTABLE INTEGER
+Maximum representable integer: i_max = 2147483647
+This value agrees with int.MaxValue = 2147483647
+When adding one to this integer, we find the lowest representable integer: i_max + 1 = -2147483648
+
+MAXIMUM REPRESENTABLE INTEGER
+Minimum representable integer: i_min = -2147483648
+This value agrees with int.MinValue = -2147483648
+When subtracting one from this integer, we find the largest representable integer: i_min - 1 = 2147483647
+
+MACHINE EPSILON
+Machine epsilon for double = 1.11022302462516E-16
+Double machine epsilon is close to the expected value for a IEEE 64-bit floating-point number 2^(-52) = 2.22044604925031E-16
+Machine epsilon for float = 5.960464E-08
+Float machine epsilon is close to the expected value for single-precision 2^(-52) = 1.19209289550781E-07
+
+COMPARING 1 + tiny + tiny + ... and tiny + tiny + ... + 1
+Let tiny = tiny_double/2, i.e. tiny = 1.11022302462516E-16
+sum_a = (1 + tiny + tiny + ...) - 1 = 0
+sum_b = (tiny + tiny + ... + 1) - 1 = 1.11022302462516E-10
+The two results are different because 1 + tiny = 1 and consequently the first part of sum_a is one: 1 + tiny + tiny ... = 1.
+The second sum, on the other hand, is different because tiny + tiny + ... + tiny != 0.
+
+TESTING THE APPROXIMATION METHOD
+approx(1, 2) = False
+approx(1, 1) = True
+approx(1, 1 + machine epsilon) = False
+approx(machine epsilon, machine epsilon) = True

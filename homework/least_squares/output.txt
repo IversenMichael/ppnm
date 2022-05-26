@@ -5,3 +5,4 @@ The Sigma matrix is =
 From the measurements we find the half life of Ra-224: 4.02826740426003 days
 The correct half life of Ra-224 is 3.6 days
 With uncertainties, the half life is between 3.93394203299138 and 4.12259277552867
+The modern value of half life does not lie within the errorbars

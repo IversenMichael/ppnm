@@ -4,7 +4,7 @@ all: output.txt
 output.txt: main.exe
 	mono main.exe > output.txt
 
-main.exe: main.cs
+main.exe: main.cs vector.dll matrix.dll QRGS.dll
 	mcs -r:vector.dll -r:matrix.dll -r:QRGS.dll main.cs
 
 QRGS.dll: QRGS.cs matrix.dll vector.dll
@@ -15,3 +15,6 @@ matrix.dll: matrix.cs vector.dll
 
 vector.dll: vector.cs
 	mcs -target:library vector.cs
+
+clean:
+	rm *.exe *.txt *.dll

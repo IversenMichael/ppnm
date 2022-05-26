@@ -11,7 +11,7 @@ lngamma.png: lngamma.plot Makefile
 	set xrange [-5:5]; \
 	set yrange [-2:5]; \
 	set grid; \
-	plot "lngamma.plot" with lines linetype 1 title "$$\mathrm{Log}( \Gamma(x)$$" \
+	plot "lngamma.plot" with lines linetype 1 title "$$\mathrm{Log}( \Gamma(x))$$" \
 	' | pyxplot
 
 gamma.png: gamma.plot gamma.tab Makefile

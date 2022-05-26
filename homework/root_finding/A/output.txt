@@ -1,10 +1,15 @@
+We consider the following non-linear set of equations:
+(sin(x - y), cos(z^2 + y), x*tan(z) - y^2) = (0, 0, 0)
 Newton's method succeeded in 677 iterations
-The root to the set of non-linear equations are
+The root to this function is
       10.8      -1.81       9.72 
-The function value at this point is
+Inserting this point, the left hand side of the non-linear equations yield:
   -4.9e-16   8.68e-12  -4.05e-09 
+
+Next, we consider the RosenBrocks valley function:
+f(x, y) = (1 - x)^2 + 100*(y - x^2)^2
 Newton's method succeeded in 84 iterations
-The root to the set of non-linear equations are
+The root to the Rosenbrock's valley function is
          1          1 
 The function value at this point is
   5.39e-10  -2.58e-12 

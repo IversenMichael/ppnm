@@ -1,0 +1,4 @@
+E = -0.25
+Newton's method succeeded in 0 iterations
+     -0.25 
+ -6.24e-05 

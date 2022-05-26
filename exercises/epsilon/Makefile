@@ -1,8 +1,11 @@
-all : Output.txt
-	cat Output.txt
+all : output.txt
+	cat $<
 
-Output.txt : main.exe
-	mono main.exe > Output.txt
+output.txt : main.exe
+	mono $< > $@
 
 main.exe : main.cs
-	mcs main.cs
+	mcs $<
+
+clean:
+	rm *.exe *.txt

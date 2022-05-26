@@ -5,6 +5,7 @@ using static vec;
 static public class main{
 	static void Main(){
 		// Part A
+		WriteLine("PART A");
 		vec u = new vec();
 		u.print("Using constructor without input: u = ");
 		vec v = new vec(1, 2, 3);
@@ -18,14 +19,18 @@ static public class main{
 		left_product.print("Multiplying v by c from the left: c * v = ");
 		vec right_product = v * c;
 		right_product.print("Multiplying v by c from the right: v * c = ");
-		
+		WriteLine();
+
 		// Part B
+		WriteLine("PART B");
 		double d = dot(v, w);
 		WriteLine($"Dot product between v and w: v dot w = {d}");
 		double n = norm(v);
 		WriteLine($"Norm of vector v: norm(v) = {n}");
+		WriteLine();
 
 		// Part C
+		WriteLine("PART C");
 		WriteLine("I have overwritten the ToString method. When called from v it now returns: " + v.ToString());
 		WriteLine($"Approximate method compares v and u: {v.approx(u)}");
 		WriteLine($"Approximate method compares v with itself: {v.approx(v)}");

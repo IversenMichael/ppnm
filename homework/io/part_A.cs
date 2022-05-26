@@ -4,13 +4,14 @@ using static System.Console;
 using static System.Math;
 public static class main{
 	public static void Main(){
-		char[] delimiters = {' ', '\t', '\n'};
-		var options = StringSplitOptions.RemoveEmptyEntries;
-		for (string line = ReadLine(); line != null; line = ReadLine()){
-			var words = line.Split(delimiters, options);
-			foreach(var word in words){
-				double x = double.Parse(word);
-				WriteLine($"{x} {Sin(x)} {Cos(x)}");
+		WriteLine(new String('-', 50));
+		WriteLine("PART A");
+		WriteLine("Reading a sequence of numbers and creating a table");
+		for(string line = ReadLine(); line != null; line = ReadLine()){
+			var numbers = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+			for(int i = 0; i < numbers.Length; i++){
+				double x = double.Parse(numbers[i]);
+				WriteLine($"{x}\t{Sin(x)}\t{Cos(x)}");
 			}
 		}
 	}

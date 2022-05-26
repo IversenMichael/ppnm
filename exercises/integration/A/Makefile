@@ -1,6 +1,5 @@
 all: out.txt erf.data erf.pyxplot.png
 	cat out.txt
-	cat erf.data
 
 erf.pyxplot.png: erf.data Makefile
 	echo 'set terminal png;\

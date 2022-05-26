@@ -64,4 +64,22 @@ public static complex pow (this complex a, double x){
 public static complex pow (this complex a, complex b){
 	return exp(b*log(a)); }
 
+// Hyperbolic sine
+public static double sinh(double x){
+	return (exp(x) - exp(-x)) / 2;
+}
+
+public static complex sinh(complex z){
+	return (exp(z) - exp(-z)) / 2;
+}
+
+// Hyperbolic cosine
+public static double cosh(double x){
+	return (exp(x) + exp(-x)) / 2;
+}
+
+public static complex cosh(complex z){
+	return (exp(z) + exp(-z)) / 2;
+}
+
 }// cmath

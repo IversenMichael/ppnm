@@ -4,21 +4,20 @@ public static class main{
 	public static void Main(){
 
 	genlist<double[]> list = new genlist<double[]>();
-	char[] delimiters = {' ', '\t'};
-	var options = StringSplitOptions.RemoveEmptyEntries;
+	char[] delimiters = {' ', '\t', '\n'};
 	for(string line=ReadLine(); line!=null; line=ReadLine()){
-		var words = line.Split(delimiters, options);
-		int n = words.Length;
-		double[] numbers = new double[n];
-		for(int i=0; i<n; i++){
-			numbers[i] = double.Parse(words[i]);
+		string[] x = line.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+		double[] numbers = new double[x.Length];
+		for(int i=0; i<x.Length; i++){
+			numbers[i] = double.Parse(x[i]);
 			}
 		list.push(numbers);
 		}
 
 	for(int i=0; i<list.size; i++){
-		var numbers = list.data[i];
-		foreach(var number in numbers){
+		double[] numbers = list[i];
+		for(int j=0; j<numbers.Length; j++){
+			double number = numbers[j];
 			Write($"{number:e} ");
 			}
 		WriteLine();

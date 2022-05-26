@@ -1,6 +1,8 @@
 using static System.Console;
 public static class main{
 	public static void Main(){
+	WriteLine("PART A");
+	WriteLine("Check that the eigenvalue decomposition works as intended");
 	matrix B = new matrix(5, 5, mode:"random");
 	matrix A = B*B.transpose();
 	jacobi jac = new jacobi(A);
@@ -17,7 +19,7 @@ public static class main{
 	/* The columns of matrix V are eigenvectors of matrix A */
 	WriteLine("Eigenvalues = ");
 	jac.D.print();
-	WriteLine("V^T * A * V^T = ");
+	WriteLine("V^T * A * V = ");
 	matrix M = jac.V.transpose() * A * jac.V;
 	M.print();
 	}

@@ -7,6 +7,8 @@ public static class main{
 
     public static void Main(){
         //  Trial function
+        WriteLine("We consider the following non-linear set of equations:");
+        WriteLine("(sin(x - y), cos(z^2 + y), x*tan(z) - y^2) = (0, 0, 0)");
         Func<vector, vector> f = delegate(vector x){
             return new vector(
                 Sin(x[0] - x[1]), 
@@ -19,12 +21,15 @@ public static class main{
         vector x0 = new vector(1.23, -11.1, 9.87);
 
         vector result = Newton(f, x0);
-        WriteLine("The root to the set of non-linear equations are");
+        WriteLine("The root to this function is");
         result.print();
-        WriteLine("The function value at this point is");
+        WriteLine("Inserting this point, the left hand side of the non-linear equations yield:");
         f(result).print();
 
         // Partial derivatives of Rosenbrock's valley function,
+        WriteLine("");
+        WriteLine("Next, we consider the RosenBrocks valley function:");
+        WriteLine("f(x, y) = (1 - x)^2 + 100*(y - x^2)^2");
         Func<vector, vector> g = delegate(vector x){
             return new vector(
                 200 * x[0]*x[0]*x[0] - 200*x[0]*x[1] + x[0] - 1,
@@ -35,7 +40,7 @@ public static class main{
         x0 = new vector(1.23, 9.87);
 
         result = Newton(g, x0);
-        WriteLine("The root to the set of non-linear equations are");
+        WriteLine("The root to the Rosenbrock's valley function is");
         result.print();
         WriteLine("The function value at this point is");
         g(result).print();

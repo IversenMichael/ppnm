@@ -12,3 +12,6 @@ matrix.dll: matrix.cs vector.dll
 
 vector.dll: vector.cs
 	mcs -t:library vector.cs
+
+clean:
+	rm *.exe *.dll *.txt

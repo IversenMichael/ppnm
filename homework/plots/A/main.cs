@@ -8,7 +8,7 @@ public static void Main(){
 	}
 }
 static double erf(double x){
-	// single precision error function (Abramowitz and Stegun, from Wikipedia)
+	// Single precision error function (Abramowitz and Stegun, from Wikipedia)
 	if(x<0) return -erf(-x);
 	double[] a = {0.254829592, -0.284496736, 1.421413741, -1.453152027, 1.061405429};
 	double t = 1 / (1 + 0.3275911 * x);

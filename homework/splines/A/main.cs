@@ -25,7 +25,6 @@ static public class main{
 			out_linter.WriteLine($"{x_inter[i]} {y_inter[i]} {y_integ[i]} {Sin(x_inter[i])} {1 - Cos(x_inter[i])}");
 		}
 
-
 		out_linter.Close();
 		out_tab.Close();
 	}
@@ -49,7 +48,7 @@ static public class main{
 
 	static public double linterp(double[] x, double[] y, double z){
 		int i = binsearch(x, z);
-		z = y[i] + (y[i+1]-y[i])/(x[i+1]-x[i])*(z - x[i]);
+		z = y[i] + (y[i+1] - y[i]) / (x[i+1] - x[i]) * (z - x[i]);
 		return z;
 		}
 

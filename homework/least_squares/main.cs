@@ -48,7 +48,7 @@ public static class main{
 		WriteLine($"The correct half life of Ra-224 is 3.6 days");
 		double sigma_half_life = Sqrt(ls.Sigma[1, 1]) * Log(2)/(ls.c[1]*ls.c[1]);
 		WriteLine($"With uncertainties, the half life is between {half_life - sigma_half_life} and {half_life + sigma_half_life}");
-
+		WriteLine("The modern value of half life does not lie within the errorbars");
 		/* Adding uncertainties to fit coefficients */
 		var fit_uncertainties = new System.IO.StreamWriter("fit_uncertainties.txt", append:true);
 		for(int i=0; i<N_fit; i++){

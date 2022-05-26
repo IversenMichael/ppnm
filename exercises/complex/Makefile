@@ -1,11 +1,17 @@
-all : Output.txt
-	cat Output.txt
+all : output.txt
+	cat $<
 
-Output.txt : main.exe
-	mono main.exe > Output.txt
+output.txt : main.exe
+	mono $< > $@
 
-main.exe : main.cs
-	mcs -reference:cmath.dll main.cs
+main.exe : main.cs cmath.dll complex.dll
+	mcs -reference:cmath.dll -reference:complex.dll main.cs
 
-cmath.dll : cmath.cs complex.cs
-		mcs -target:library -out:./cmath.dll $^
+cmath.dll : cmath.cs complex.dll
+		mcs -target:library -reference:complex.dll $<
+
+complex.dll : complex.cs 
+		mcs -target:library $<
+
+clean:
+	rm *.txt *.exe *.dll

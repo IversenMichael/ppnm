@@ -1,14 +1,23 @@
+using static System.Console;
 public class genlist<T>{
-	public T[] data;
+	T[] data;
 	public int size = 0;
-	public int capacity = 8;
-	public genlist(){ data = new T[capacity]; }
+	public int capacity = 999;
+	// Constructor
+	public genlist(){ data = new T[capacity];}
 	
-	public void push(T item){ /* add item to list */
-		if(size==capacity){
+	// Indexer
+    public T this[int i]{
+        get {return data[i];}
+        set {data[i] = value;}
+        }
+
+	// Push method
+	public void push(T item){
+		if(size == capacity){
 			capacity *= 2;
 			T[] newdata = new T[capacity];
-			for(int i=0; i<size; i++){
+			for(int i=0; i<capacity; i++){
 				newdata[i] = data[i];
 			}
 			data = newdata;
@@ -17,7 +26,8 @@ public class genlist<T>{
 		size++;
 	}
 
-	public void rem(int j){ /* removes item number j from list */
+	// Remove method
+	public void rem(int j){
 		T[] newdata = new T[capacity];
 		for(int i=0; i<j; i++){
 			newdata[i] = data[i];
@@ -26,6 +36,6 @@ public class genlist<T>{
 			newdata[i-1] = data[i];
 		}
 		data = newdata;
-		size -= 1;
+		size--;
 	}
 }
