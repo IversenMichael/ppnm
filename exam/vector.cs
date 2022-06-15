@@ -75,12 +75,19 @@ public static vector operator/ (vector v, double a){
 
 public double dot(vector other){
 	double dot_product = 0;
-	for(int i=0;i<size;i++){
+	for(int i=0; i<size; i++){
 		dot_product += this[i] * other[i];
 	}
 	return dot_product;
 	}
 
+public double norm(){
+	double norm_squared = 0;
+	for(int i=0; i<size; i++){
+		norm_squared += this[i] * this[i];
+	}
+	return Sqrt(norm_squared);
+}
 public vector round(int decimal_places=3){
 	vector v = new vector(this.size);
 	for (int i=0; i<this.size; i++){

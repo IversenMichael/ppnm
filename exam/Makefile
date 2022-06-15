@@ -1,7 +1,7 @@
-all: output.txt performance1.png performance2.png performance3.png performance4.png
-	cat output.txt
+all: test_results.txt performance1.png performance2.png performance3.png performance4.png
+	cat test_results.txt
 
-performance1.png: rank2_times.txt Makefile
+performance1.png: rank1_times.txt Makefile
 	echo '\
 	set terminal png;\
 	set output "$@";\
@@ -10,10 +10,11 @@ performance1.png: rank2_times.txt Makefile
 	set tics out;\
 	set title "Time of diagonalization using rank-update-algorithm (we expect $$O(n^2)$$)";\
 	set key left top;\
-	plot "rank2_times.txt" using 1:2 with points title "Data"\
+	set grid;\
+	plot "rank1_times.txt" using 1:2 with points title "Data"\
 	'| pyxplot
 
-performance2.png: rank2_times.txt Makefile
+performance2.png: rank1_times.txt Makefile
 	echo '\
 	set terminal png;\
 	set output "$@";\
@@ -22,7 +23,8 @@ performance2.png: rank2_times.txt Makefile
 	set tics out;\
 	set title "$$\mathrm{Time}/\mathrm{size}^2$$ using rank-update-algorithm (we expect $$O(1)$$)";\
 	set key left top;\
-	plot [0:150] [0:0.000005] "rank2_times.txt" using 1:3 with points title "Data"\
+	set grid;\
+	plot [0:150] [0:0.0000005] "rank1_times.txt" using 1:3 with points title "Data"\
 	'| pyxplot
 
 performance3.png: jac_times.txt Makefile
@@ -32,8 +34,9 @@ performance3.png: jac_times.txt Makefile
 	set xlabel "Number of rows and columns of matrix";\
 	set ylabel "time [s]";\
 	set tics out;\
-	set title "$$\mathrm{Time}/\mathrm{size}^2$$ using Jacobi algorithm (we expect $$O(n^3)$$)";\
+	set title "Time of diagonalization using Jacobi-algorithm (we expect $$O(n^3)$$)";\
 	set key left top;\
+	set grid;\
 	plot "jac_times.txt" using 1:2 with points title "Data"\
 	'| pyxplot
 
@@ -46,10 +49,11 @@ performance4.png: jac_times.txt Makefile
 	set tics out;\
 	set title "$$\mathrm{Time}/\mathrm{size}^2$$ using Jacobi algorithm (we expect $$O(n)$$)";\
 	set key left top;\
+	set grid;\
 	plot "jac_times.txt" using 1:3 with points title "Data"\
 	'| pyxplot
 
-output.txt: main.exe
+test_results.txt rank1_times.txt jac_times.txt: main.exe
 	mono main.exe > output.txt
 
 main.exe: main.cs matrix.dll vector.dll jacobi.dll

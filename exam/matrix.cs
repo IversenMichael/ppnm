@@ -102,7 +102,6 @@ public class matrix{
 		}
 		return w;
 	}
-	
 	/* Outer product of two vectors */
 	public static matrix outer(vector v, vector u){
 		matrix outer_product = new matrix(v.size, u.size);
@@ -113,7 +112,7 @@ public class matrix{
 		}
 		return outer_product;
 	}
-
+	
 	/* Printing method*/
 	public void print(){
 		for(int i=0; i<size1; i++){

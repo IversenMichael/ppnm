@@ -1,0 +1,13 @@
+-----------------------------------------------
+TESTING THE DIAGONALIZATION OF A RANK 1 UPDATE
+-----------------------------------------------
+We diagonalize random matrices of different sizes.
+The difference between the computed eigenvalues and the exact eigenvalues is determined (should be close to 0).
+Size = 2:	Error = 0
+Size = 4:	Error = 0
+Size = 8:	Error = 0
+Size = 10:	Error = 0
+Size = 50:	Error = 0
+Size = 100:	Error = 0
+
+We call the method with various special cases

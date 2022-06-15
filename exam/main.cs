@@ -6,20 +6,8 @@ using System.IO;
 using System.Diagnostics;
 public static class main{
     public static void Main(){
-        // Test performance
-        int[] sizes = new int[10];
-        for(int i=0; i<10; i++){
-            sizes[i] = 2 + 15*i;
-        }
-        var rank2_writer = new StreamWriter("rank2_times.txt");
-        var jac_writer = new StreamWriter("jac_times.txt");
-        (double[] rank2_times, double[] jac_times) = measure_performance(sizes);
-        for (int i=0; i<rank2_times.Length; i++){
-            rank2_writer.WriteLine($"{sizes[i]} {rank2_times[i]} {rank2_times[i]/((double) sizes[i]*sizes[i])}");
-            jac_writer.WriteLine($"{sizes[i]} {jac_times[i]} {jac_times[i]/((double) sizes[i]*sizes[i])}");
-        }
-        rank2_writer.Close();
-        jac_writer.Close();
+        //get_performance_data();
+        test_code();
     }
 
     public static vector find_eigenvalues(matrix D, vector u, double sigma){       
@@ -86,7 +74,7 @@ public static class main{
         return d_new;
     }
 
-    public static double root_finding(Func<double, double> f, Func<double, double> fp, double x, double x_min, double x_max, double eps=1e-3){
+    public static double root_finding(Func<double, double> f, Func<double, double> fp, double x, double x_min, double x_max, double eps=1e-6){
         // NEWTON-RAPHSON METHOD FOR ROOT FINDING
         int iter_limit = 100_000;              // Limit on the total number of iterations
         int n_iter = 0;                     // Number of iterations before finding a solution
@@ -115,6 +103,78 @@ public static class main{
         throw new IndexOutOfRangeException($"Newton-raphson method did not converge in {iter_limit} steps");
     }
 
+    public static void test_code(){
+        var test_writer = new System.IO.StreamWriter("test_results.txt");
+        test_writer.WriteLine("-----------------------------------------------");
+        test_writer.WriteLine("TESTING THE DIAGONALIZATION OF A RANK 1 UPDATE");
+        test_writer.WriteLine("-----------------------------------------------");
+        test_writer.WriteLine("We diagonalize random matrices of different sizes.");
+        test_writer.WriteLine($"The difference between the computed eigenvalues and the exact eigenvalues is determined (should be close to 0).");
+        int seed = 0;
+        int[] sizes = new int[6] {2, 4, 8, 10, 50, 100};
+        int size;
+        matrix D, A;
+        vector u, d_rank1, d_jac;
+        jacobi jac;
+        double sigma;
+
+        for (int i=0; i<sizes.Length; i++){
+            size = sizes[i];
+            test_writer.Write($"Size = {size}:\t");
+            (D, u, sigma) = get_random_rank1_update(size, seed);
+            d_rank1 = find_eigenvalues(D, u, sigma);
+
+            A = D + sigma*matrix.outer(u, u);
+            jac = new jacobi(A);
+            jac.cyclic();
+            d_jac = new vector(jac.D.diag());
+
+            test_writer.WriteLine($"Error = {Round((d_rank1 - d_jac).norm(), 5)}");
+        }
+
+        test_writer.WriteLine();
+        test_writer.WriteLine("We call the method with various special cases");
+        D = new matrix(2, 2, mode:"identity");
+        D.print();
+        u = new vector(new double[2] {1, 1});
+        sigma = 1;
+        //d_rank1 = find_eigenvalues(D, u, sigma);
+        test_writer.Close();
+    }
+
+    public static (matrix, vector, double) get_random_rank1_update(int size, int seed){
+        var rand = new Random(seed);
+        double[] D_diag = new double[size];
+        vector u = new vector(size);
+        for (int i=0; i<size; i++){
+            D_diag[i] = rand.NextDouble();
+            u[i] = rand.NextDouble();
+        }
+        Array.Sort(D_diag);
+        matrix D = new matrix(size, size, mode:"zeros");
+        for (int i=0; i<size; i++){
+            D[i, i] = D_diag[i];
+        }
+        double sigma = rand.NextDouble();
+        return (D, u, sigma);
+    }
+    public static void get_performance_data(){
+        // Test performance
+        int[] sizes = new int[6];
+        for(int i=0; i<6; i++){
+            sizes[i] = 2 + 25*i;
+        }
+        var rank1_writer = new StreamWriter("rank1_times.txt");
+        var jac_writer = new StreamWriter("jac_times.txt");
+        (double[] rank1_times, double[] jac_times) = measure_performance(sizes);
+        for (int i=0; i<rank1_times.Length; i++){
+            rank1_writer.WriteLine($"{sizes[i]} {rank1_times[i]} {rank1_times[i]/((double) sizes[i]*sizes[i])}");
+            jac_writer.WriteLine($"{sizes[i]} {jac_times[i]} {jac_times[i]/((double) sizes[i]*sizes[i])}");
+        }
+        rank1_writer.Close();
+        jac_writer.Close();
+    }
+    
     public static (double[], double[]) measure_performance(int[] sizes, int N_rep=10){
        /* Setup */
         int seed = 0;
@@ -128,25 +188,11 @@ public static class main{
         vector d_new;
         jacobi jac;
         Stopwatch stopwatch;
-        double[] rank2_times = new double[sizes.Length];
+        double[] rank1_times = new double[sizes.Length];
         double[] jac_times = new double[sizes.Length];
         for(int i=0; i<sizes.Length; i++){
             size = sizes[i];
-
-            /* Buidling matrices */
-            D_diag = new double[size];
-            u = new vector(size);
-            for (int j=0; j<size; j++){
-                D_diag[j] = rand.NextDouble();
-                u[j] = rand.NextDouble();
-            }
-
-            Array.Sort(D_diag);
-            D = new matrix(size, size, mode:"zeros");
-            for (int j=0; j<size; j++){
-                D[j, j] = D_diag[j];
-            }
-            sigma = rand.NextDouble();
+            (D, u, sigma) = get_random_rank1_update(size, seed);
             A = D + sigma*matrix.outer(u, u);
 
             /* Measuring performance */
@@ -156,9 +202,9 @@ public static class main{
                 stopwatch = Stopwatch.StartNew();
                 d_new = find_eigenvalues(D, u, sigma);
                 stopwatch.Stop();
-                rank2_times[i] += (double)stopwatch.ElapsedTicks/(double)Stopwatch.Frequency;
+                rank1_times[i] += (double)stopwatch.ElapsedTicks/(double)Stopwatch.Frequency;
             }
-            //rank2_times[i] /= (double)N_rep;
+            rank1_times[i] /= (double)N_rep;
 
             // Normal Jacobi method
             for (int k=0; k<N_rep; k++){
@@ -168,8 +214,8 @@ public static class main{
                 stopwatch.Stop();
                 jac_times[i] += (double)stopwatch.ElapsedTicks/(double)Stopwatch.Frequency;
             }
-            //jac_times[i] /= (double)N_rep;
+            jac_times[i] /= (double)N_rep;
         }
-        return (rank2_times, jac_times);
+        return (rank1_times, jac_times);
     }
 }
