@@ -22,5 +22,6 @@ public partial class vec{
 			return false;
 		}
 	        return true;
-	}	                                                                                                                                                                      public bool approx(vec other){return approx(this, other);} 
+	}	
+	public bool approx(vec other){return approx(this, other);} 
 }
