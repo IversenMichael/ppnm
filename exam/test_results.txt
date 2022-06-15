@@ -1,13 +1,39 @@
 -----------------------------------------------
 TESTING THE DIAGONALIZATION OF A RANK 1 UPDATE
 -----------------------------------------------
-We diagonalize random matrices of different sizes.
-The difference between the computed eigenvalues and the exact eigenvalues is determined (should be close to 0).
-Size = 2:	Error = 0
-Size = 4:	Error = 0
-Size = 8:	Error = 0
-Size = 10:	Error = 0
-Size = 50:	Error = 0
-Size = 100:	Error = 0
 
-We call the method with various special cases
+DIAGONALIZE MATRICES OF DIFFERENT SIZES
+The difference between the computed eigenvalues and the exact eigenvalues is determined (should be close to 0).
+Size = 2:	Error = 3.71933336798787E-08
+Size = 4:	Error = 7.0414111442394E-09
+Size = 8:	Error = 3.00935343690095E-08
+Size = 10:	Error = 1.05657953548681E-06
+Size = 100:	Error = 2.74869855202538E-10
+
+TESTING SPECIAL CASES
+Negative sigma value
+D = 
+(-12	0)
+(0	99)
+u = (1, -2)
+sigma = -1.23
+The computed eigenvalues are = (-13.2863640200898, 94.1363642769801)
+The exact eigenvalues are = (-13.2863640210338, 94.1363640210338)
+
+u vector with a trivial entry
+D = 
+(-12	0)
+(0	99)
+u = (0, 1)
+sigma = 1
+The computed eigenvalues are = (-12, 99.9999999997672)
+The exact eigenvalues are = (-12, 100)
+
+Matrix with degenerate eigenvalues
+D = 
+(1	0)
+(0	1)
+u = (1.23, 9.87)
+sigma = 1
+The computed eigenvalues are = (1, 99.9297999769661)
+The exact eigenvalues are = (1, 99.9298)

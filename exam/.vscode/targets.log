@@ -11,7 +11,7 @@ UNC paths are not supported.  Defaulting to Windows directory.
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Wed Jun 15 10:21:01 2022
+# Make data base, printed on Wed Jun 15 20:25:43 2022
 
 # Variables
 
@@ -36,7 +36,10 @@ HOMEDRIVE = C:
 # automatic
 ^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
 # makefile
-CURDIR := C:/Windows
+CUR 
+make.exe: *** No rule to make target 'all'.  Stop.
+
+DIR := C:/Windows
 # default
 SHELL := sh.exe
 # environment
@@ -60,7 +63,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-5016cfd3-c3f8-456e-9638-89390d099a69-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-ce210b60-1319-4476-b2c0-55713769429e-sock
 # environment
 VSCODE_CWD = C:\Users\au544901\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -88,7 +91,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_19420_VEICYKUGXYJQCSXG
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_16536_SHEMDQRVHYSDVEWI
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -204,7 +207,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 19420
+VSCODE_PID = 16536
 # environment
 USERDOMAIN_ROAMINGPROFILE = UNI
 # variable set hash-table stats:
@@ -233,7 +236,7 @@ USERDOMAIN_ROAMINGPROFILE = UNI
 # C:\Users\au544901\AppData\Local\Programs\Python\Python310\ (key C:/Users/au544901/AppData/Local/Programs/Python/Python310/, mtime 1635325249): 18 files, no impossibilities.
 # C:\Users\au544901\.dotnet\tools: could not be stat'd.
 # C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1652769029): 13 files, no impossibilities.
-# C:\WINDOWS\system32 (key C:/WINDOWS/system32, mtime 1655274815): 2953 files, no impossibilities.
+# C:\WINDOWS\system32 (key C:/WINDOWS/system32, mtime 1655310188): 2953 files, no impossibilities.
 
 # 4342 files, no impossibilities in 18 directories.
 
@@ -299,8 +302,6 @@ GNUmakefile:
 # strcache performance: lookups = 4368 / hit rate = 4%
 # hash-table stats:
 # Load=4163/8192=51%, Rehash=0, Collisions=1836/4368=42%
-# Finished Make data base on Wed Jun 15 10:21:01 2022
+# Finished Make data base on Wed Jun 15 20:25:43 2022
 
  
-make.exe: *** No rule to make target 'all'.  Stop.
-

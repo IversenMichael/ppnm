@@ -6,8 +6,9 @@ using System.IO;
 using System.Diagnostics;
 public static class main{
     public static void Main(){
-        //get_performance_data();
+        get_performance_data();
         test_code();
+
     }
 
     public static vector find_eigenvalues(matrix D, vector u, double sigma){       
@@ -66,21 +67,29 @@ public static class main{
 
         // New eigenvalues
         vector d_new = new vector(d.size);
-
         for (int i=0; i<d.size; i++){
-            d_new[i] = root_finding(f, fp, x0[i], x_min[i], x_max[i]);
+            if (Abs(u[i]) < 1e-9){
+                d_new[i] = d[i];
+            }
+            else{
+                d_new[i] = root_finding(f, fp, x0[i], x_min[i], x_max[i]);
+            }
         }
 
         return d_new;
     }
 
     public static double root_finding(Func<double, double> f, Func<double, double> fp, double x, double x_min, double x_max, double eps=1e-6){
+        if (Abs(x_min - x_max) < 1e-6){
+            return x;
+        }
         // NEWTON-RAPHSON METHOD FOR ROOT FINDING
         int iter_limit = 100_000;              // Limit on the total number of iterations
         int n_iter = 0;                     // Number of iterations before finding a solution
         double delta_x;                     // Step
         double lambda;                      // Used in backtracking line search
         double x_next;                       // Used for storing intermediate steps
+
         for (int i=0; i<iter_limit; i++){   // Do Newton steps
             if (Abs(f(x)) < eps){           // If |f(x0)| < epsilon we return.
                 return x;
@@ -91,11 +100,11 @@ public static class main{
 
             // BACK-TRACKING LINE SEARCH
             x_next = x + lambda * delta_x;   // Next step
-            while ((Abs(f(x_next)) > Abs((1 - lambda/2)*f(x))) & (lambda >= 1.0/64) | (x_next < x_min) | (x_max < x_next)){ // Armijo–Goldstein condition and check if new point remains in the interval [x_min, x_max]
+            while ((Abs(f(x_next)) > Abs((1 - lambda/2)*f(x))) | (x_next < x_min) | (x_max < x_next)){ // Armijo–Goldstein condition and check if new point remains in the interval [x_min, x_max]
                 lambda = lambda / 2;            // Decrease lambda
                 x_next = x + lambda * delta_x;  // Update new point
                 }
-            
+
             x = x_next; // We accept the step 
             }
         
@@ -108,16 +117,17 @@ public static class main{
         test_writer.WriteLine("-----------------------------------------------");
         test_writer.WriteLine("TESTING THE DIAGONALIZATION OF A RANK 1 UPDATE");
         test_writer.WriteLine("-----------------------------------------------");
-        test_writer.WriteLine("We diagonalize random matrices of different sizes.");
+        test_writer.WriteLine("");
+        test_writer.WriteLine("DIAGONALIZE MATRICES OF DIFFERENT SIZES");
         test_writer.WriteLine($"The difference between the computed eigenvalues and the exact eigenvalues is determined (should be close to 0).");
         int seed = 0;
-        int[] sizes = new int[6] {2, 4, 8, 10, 50, 100};
+        int[] sizes = new int[5] {2, 4, 8, 10, 100};
         int size;
         matrix D, A;
         vector u, d_rank1, d_jac;
         jacobi jac;
         double sigma;
-
+        
         for (int i=0; i<sizes.Length; i++){
             size = sizes[i];
             test_writer.Write($"Size = {size}:\t");
@@ -129,16 +139,60 @@ public static class main{
             jac.cyclic();
             d_jac = new vector(jac.D.diag());
 
-            test_writer.WriteLine($"Error = {Round((d_rank1 - d_jac).norm(), 5)}");
+            test_writer.WriteLine($"Error = {(d_rank1 - d_jac).norm()}");
         }
-
+        
         test_writer.WriteLine();
-        test_writer.WriteLine("We call the method with various special cases");
-        D = new matrix(2, 2, mode:"identity");
-        D.print();
-        u = new vector(new double[2] {1, 1});
+        test_writer.WriteLine("TESTING SPECIAL CASES");
+        test_writer.WriteLine("Negative sigma value");
+        D = new matrix(2, 2, mode:"zeros");
+        D[0, 0] = -12;
+        D[1, 1] = 99;
+        test_writer.WriteLine($"D = ");
+        test_writer.WriteLine($"({D[0, 0]}\t{D[0, 1]})\n({D[1, 0]}\t{D[1, 1]})");
+        u = new vector(new double[2] {1, -2});
+        test_writer.WriteLine($"u = ({u[0]}, {u[1]})");
+        sigma = -1.23;
+        test_writer.WriteLine($"sigma = {sigma}");
+        d_rank1 = find_eigenvalues(D, u, sigma);
+        test_writer.WriteLine($"The computed eigenvalues are = ({d_rank1[0]}, {d_rank1[1]})");
+        
+        jac = new jacobi(D + sigma*matrix.outer(u, u));
+        jac.cyclic();
+        test_writer.WriteLine($"The exact eigenvalues are = ({jac.D[0, 0]}, {jac.D[1, 1]})");
+        test_writer.WriteLine("");
+
+        test_writer.WriteLine("u vector with a trivial entry");
+        test_writer.WriteLine($"D = ");
+        test_writer.WriteLine($"({D[0, 0]}\t{D[0, 1]})\n({D[1, 0]}\t{D[1, 1]})");
+        u = new vector(new double[2] {0, 1});
+        test_writer.WriteLine($"u = ({u[0]}, {u[1]})");
         sigma = 1;
-        //d_rank1 = find_eigenvalues(D, u, sigma);
+        test_writer.WriteLine($"sigma = {sigma}");
+        d_rank1 = find_eigenvalues(D, u, sigma);
+        test_writer.WriteLine($"The computed eigenvalues are = ({d_rank1[0]}, {d_rank1[1]})");
+        
+        jac = new jacobi(D + sigma*matrix.outer(u, u));
+        jac.cyclic();
+        test_writer.WriteLine($"The exact eigenvalues are = ({jac.D[0, 0]}, {jac.D[1, 1]})");
+        test_writer.WriteLine("");
+
+
+        test_writer.WriteLine("Matrix with degenerate eigenvalues");
+        D = new matrix(2, 2, mode:"identity");
+        test_writer.WriteLine($"D = ");
+        test_writer.WriteLine($"({D[0, 0]}\t{D[0, 1]})\n({D[1, 0]}\t{D[1, 1]})");
+        u = new vector(new double[2] {1.23, 9.87});
+        test_writer.WriteLine($"u = ({u[0]}, {u[1]})");
+        sigma = 1;
+        test_writer.WriteLine($"sigma = {sigma}");
+        d_rank1 = find_eigenvalues(D, u, sigma);
+        test_writer.WriteLine($"The computed eigenvalues are = ({d_rank1[0]}, {d_rank1[1]})");
+        
+        jac = new jacobi(D + sigma*matrix.outer(u, u));
+        jac.cyclic();
+        test_writer.WriteLine($"The exact eigenvalues are = ({jac.D[0, 0]}, {jac.D[1, 1]})");
+
         test_writer.Close();
     }
 
@@ -160,9 +214,9 @@ public static class main{
     }
     public static void get_performance_data(){
         // Test performance
-        int[] sizes = new int[6];
-        for(int i=0; i<6; i++){
-            sizes[i] = 2 + 25*i;
+        int[] sizes = new int[8];
+        for(int i=0; i<8; i++){
+            sizes[i] = 2 + 10*i;
         }
         var rank1_writer = new StreamWriter("rank1_times.txt");
         var jac_writer = new StreamWriter("jac_times.txt");

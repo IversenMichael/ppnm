@@ -1,5 +1,6 @@
 all: test_results.txt performance1.png performance2.png performance3.png performance4.png
 	cat test_results.txt
+	cat output.txt
 
 performance1.png: rank1_times.txt Makefile
 	echo '\
@@ -24,7 +25,7 @@ performance2.png: rank1_times.txt Makefile
 	set title "$$\mathrm{Time}/\mathrm{size}^2$$ using rank-update-algorithm (we expect $$O(1)$$)";\
 	set key left top;\
 	set grid;\
-	plot [0:150] [0:0.0000005] "rank1_times.txt" using 1:3 with points title "Data"\
+	plot [0:80] [0:0.0000005] "rank1_times.txt" using 1:3 with points title "Data"\
 	'| pyxplot
 
 performance3.png: jac_times.txt Makefile
