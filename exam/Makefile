@@ -70,4 +70,5 @@ vector.dll: vector.cs
 	mcs -target:library vector.cs
 
 clean:
-	rm *.txt *.dll *.png *.pdf
+	rm output.txt jac_times.txt rank1_times.txt test_results.txt
+	rm *.exe *.dll *.png

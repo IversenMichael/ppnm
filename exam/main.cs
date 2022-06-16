@@ -234,7 +234,6 @@ public static class main{
 
         // Defining quantities used below
         int size;
-        double[] D_diag;
         vector u, d_new;
         matrix D, A;
         double sigma;
