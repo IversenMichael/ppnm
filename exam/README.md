@@ -1,4 +1,4 @@
-# EXAM IN PRACTICAL PROGRAMMING AND NUMERICAL METHODS
+# Exam in practical programming and numerical methods
 Michael Iversen (201505099)
 
 This folder contains my solution to exam question 7: Symmetric rank-1 update of a size-n symmetric eigenvalue problem.
