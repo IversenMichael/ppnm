@@ -32,7 +32,9 @@ The matrix we wish to diagonalize is then given by A = D + sigma*u*u^T.
 We measure the ellapsed time when diagonalizing matrices of 8 different sizes.
 The time as a function of matrix size is illustrated in the figure.
 We expect the algortihm to be O(n^2), i.e. time ~ size^2.
-    
+
+![rank1_performance1.png](rank1_performance1.png)
+
 #### rank1_performance2.png
 In rank1_performance1.png we expect the behaviour time ~ size^2.
 However, the exact behaviour was difficult to jugde from that figure.
@@ -45,8 +47,13 @@ We see that the data is approximately constant and we conclude that the algortih
 We compare the rank-1 update algortihm with the Jacobi eigenvalue algortihm.
 The Jacobi eigenvalue algorithm has complexity O(n^3) and we generally see that the algortihm is much slower than the rank-1 update algortihm.
 
+![jacobi_performance1.png](jacobi_performance1.png)
+
 #### jacobi_performance2.png
 Similar to rank1_performance2.png, we plot time/size^2 as a funtion of size to determine whether time ~ size^3.
 Since this plot is approximately a straight line, we conclude that the Jacobi eigenvalue algortihm is of complexity O(n^3).
-        
+
+![jacobi_performance2.png](jacobi_performance2.png)
+
+
 In total, the rank-1 update algortihm has complexity O(n^2) and is generally much faster than the Jacobi eigenvalue algorithm.
