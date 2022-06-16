@@ -1,8 +1,8 @@
-all: test_results.txt performance1.png performance2.png performance3.png performance4.png
+all: output.txt test_results.txt rank1_performance1.png rank1_performance2.png jacobi_performance1.png jacobi_performance2.png
 	cat test_results.txt
 	cat output.txt
 
-performance1.png: rank1_times.txt Makefile
+rank1_performance1.png: rank1_times.txt Makefile
 	echo '\
 	set terminal png;\
 	set output "$@";\
@@ -15,7 +15,7 @@ performance1.png: rank1_times.txt Makefile
 	plot "rank1_times.txt" using 1:2 with points title "Data"\
 	'| pyxplot
 
-performance2.png: rank1_times.txt Makefile
+rank1_performance2.png: rank1_times.txt Makefile
 	echo '\
 	set terminal png;\
 	set output "$@";\
@@ -28,7 +28,7 @@ performance2.png: rank1_times.txt Makefile
 	plot [0:80] [0:0.0000005] "rank1_times.txt" using 1:3 with points title "Data"\
 	'| pyxplot
 
-performance3.png: jac_times.txt Makefile
+jacobi_performance1.png: jac_times.txt Makefile
 	echo '\
 	set terminal png;\
 	set output "$@";\
@@ -41,7 +41,7 @@ performance3.png: jac_times.txt Makefile
 	plot "jac_times.txt" using 1:2 with points title "Data"\
 	'| pyxplot
 
-performance4.png: jac_times.txt Makefile
+jacobi_performance2.png: jac_times.txt Makefile
 	echo '\
 	set terminal png;\
 	set output "$@";\
@@ -54,7 +54,7 @@ performance4.png: jac_times.txt Makefile
 	plot "jac_times.txt" using 1:3 with points title "Data"\
 	'| pyxplot
 
-test_results.txt rank1_times.txt jac_times.txt: main.exe
+output.txt test_results.txt rank1_times.txt jac_times.txt: main.exe
 	mono main.exe > output.txt
 
 main.exe: main.cs matrix.dll vector.dll jacobi.dll
@@ -70,4 +70,4 @@ vector.dll: vector.cs
 	mcs -target:library vector.cs
 
 clean:
-	rm *.txt *.dll *.png
+	rm *.txt *.dll *.png *.pdf

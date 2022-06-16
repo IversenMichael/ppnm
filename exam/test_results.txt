@@ -3,12 +3,12 @@ TESTING THE DIAGONALIZATION OF A RANK 1 UPDATE
 -----------------------------------------------
 
 DIAGONALIZE MATRICES OF DIFFERENT SIZES
-The difference between the computed eigenvalues and the exact eigenvalues is determined (should be close to 0).
+The difference between the computed eigenvalues and the exact eigenvalues (should be close to 0).
 Size = 2:	Error = 3.71933336798787E-08
-Size = 4:	Error = 7.0414111442394E-09
-Size = 8:	Error = 3.00935343690095E-08
-Size = 10:	Error = 1.05657953548681E-06
-Size = 100:	Error = 2.74869855202538E-10
+Size = 4:	Error = 2.32703233100811E-09
+Size = 8:	Error = 1.118491095103E-07
+Size = 10:	Error = 6.70464072095697E-07
+Size = 100:	Error = 3.18959907008063E-06
 
 TESTING SPECIAL CASES
 Negative sigma value

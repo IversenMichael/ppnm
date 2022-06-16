@@ -11,7 +11,7 @@ UNC paths are not supported.  Defaulting to Windows directory.
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Wed Jun 15 20:25:43 2022
+# Make data base, printed on Thu Jun 16 10:57:14 2022
 
 # Variables
 
@@ -63,7 +63,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-ce210b60-1319-4476-b2c0-55713769429e-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-efa4e799-1e3f-4162-b3d7-e6bdcdc56563-sock
 # environment
 VSCODE_CWD = C:\Users\au544901\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -91,7 +91,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_16536_SHEMDQRVHYSDVEWI
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_21868_FJFNTYEPNIDUUXTJ
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -111,9 +111,9 @@ PUBLIC = C:\Users\Public
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\au544901\AppData\Roaming\Code\CachedData\4af164ea3a06f701fe3e89a2bcbb421d2026b68f
+VSCODE_CODE_CACHE_PATH = C:\Users\au544901\AppData\Roaming\Code\CachedData\30d9c6cd9483b2cc586687151bcbcd635f373630
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
 # environment
@@ -153,7 +153,7 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
 # environment
 OS = Windows_NT
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\33adcd4276e1b3fe4ba31511ebb2dee8-1.68.0-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\33adcd4276e1b3fe4ba31511ebb2dee8-1.68.1-main-sock
 # environment
 HOMEPATH = \Users\au544901
 # environment
@@ -207,7 +207,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 16536
+VSCODE_PID = 21868
 # environment
 USERDOMAIN_ROAMINGPROFILE = UNI
 # variable set hash-table stats:
@@ -231,7 +231,7 @@ USERDOMAIN_ROAMINGPROFILE = UNI
 # C:\Users\au544901\AppData\Local\GitHubDesktop\bin (key C:/Users/au544901/AppData/Local/GitHubDesktop/bin, mtime 1644234106): 4 files, no impossibilities.
 # C:\Program Files\Inkscape\bin (key C:/Program Files/Inkscape/bin, mtime 1635342222): 131 files, no impossibilities.
 # C:\Program Files\MATLAB\R2021b\bin (key C:/Program Files/MATLAB/R2021b/bin, mtime 1643210471): 14 files, no impossibilities.
-# C:\Users\au544901\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/au544901/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1654859115): 4 files, no impossibilities.
+# C:\Users\au544901\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/au544901/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1655317330): 4 files, no impossibilities.
 # C:\WINDOWS\System32\Wbem (key C:/WINDOWS/System32/Wbem, mtime 1650465268): 170 files, no impossibilities.
 # C:\Users\au544901\AppData\Local\Programs\Python\Python310\ (key C:/Users/au544901/AppData/Local/Programs/Python/Python310/, mtime 1635325249): 18 files, no impossibilities.
 # C:\Users\au544901\.dotnet\tools: could not be stat'd.
@@ -302,6 +302,6 @@ GNUmakefile:
 # strcache performance: lookups = 4368 / hit rate = 4%
 # hash-table stats:
 # Load=4163/8192=51%, Rehash=0, Collisions=1836/4368=42%
-# Finished Make data base on Wed Jun 15 20:25:43 2022
+# Finished Make data base on Thu Jun 16 10:57:14 2022
 
  
