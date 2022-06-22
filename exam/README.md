@@ -56,4 +56,5 @@ Since this plot is approximately a straight line, we conclude that the Jacobi ei
 ![jacobi_performance2.png](jacobi_performance2.png)
 
 
-In total, the rank-1 update algortihm has complexity O(n^2) and is generally much faster than the Jacobi eigenvalue algorithm.
+## Conclusion
+In total, the rank-1 update algortihm works correctly, has computational complexity O(n^2) and is generally much faster than the Jacobi eigenvalue algorithm.

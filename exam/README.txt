@@ -48,4 +48,4 @@ PERFORMANCE TEST:
         Similar to rank1_performance2.png, we plot time/size^2 as a funtion of size to determine whether time ~ size^3.
         Since this plot is approximately a straight line, we conclude that the Jacobi eigenvalue algortihm is of complexity O(n^3).
         
-    In total, the rank-1 update algortihm has complexity O(n^2) and is generally much faster than the Jacobi eigenvalue algorithm.
+    In total, the rank-1 update algortihm works correctly, has computational complexity O(n^2) and is generally much faster than the Jacobi eigenvalue algorithm.

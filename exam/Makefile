@@ -1,6 +1,5 @@
-all: output.txt test_results.txt rank1_performance1.png rank1_performance2.png jacobi_performance1.png jacobi_performance2.png
+all: test_results.txt rank1_performance1.png rank1_performance2.png jacobi_performance1.png jacobi_performance2.png
 	cat test_results.txt
-	cat output.txt
 
 rank1_performance1.png: rank1_times.txt Makefile
 	echo '\
@@ -55,7 +54,7 @@ jacobi_performance2.png: jac_times.txt Makefile
 	'| pyxplot
 
 output.txt test_results.txt rank1_times.txt jac_times.txt: main.exe
-	mono main.exe > output.txt
+	mono main.exe
 
 main.exe: main.cs matrix.dll vector.dll jacobi.dll
 	mcs -reference:matrix.dll -reference:vector.dll -reference:jacobi.dll main.cs

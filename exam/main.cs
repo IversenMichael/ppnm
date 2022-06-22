@@ -8,16 +8,15 @@ public static class main{
     public static void Main(){
         measure_performance();
         test_code();
-
     }
 
     public static vector find_eigenvalues(matrix D, vector u, double sigma){       
         /* 
         This method computes the new eigenvalues after a rank-1 update.
-        Given a diagonal matrix D, vector u and double sigma, the eigenvalues of A = D + sigma*u*u^T is computed.
+        Given a diagonal matrix D, vector u and double sigma, the eigenvalues of A = D + sigma*u*u^T are computed.
         */
 
-        // Extracts the diagonal of the matrix D into the vector d
+        // Extracts the diagonal of the matrix D into a vector d
         vector d = new vector(D.size1);
         for (int i=0; i<d.size; i++){
             d[i] = D[i, i];
@@ -48,7 +47,7 @@ public static class main{
         // We store the left and right boundaries of these intervals in arrays x_min and x_max
         double[] x_min = new double[d.size];
         double[] x_max = new double[d.size];
-        if (Sign(sigma) > 0){   // Note that these intervals depends on the sign on sigma
+        if (Sign(sigma) > 0){   // Note that these intervals depend on the sign on sigma
             for (int i=0; i<x_min.Length-1; i++){
                 x_min[i] = d[i];
                 x_max[i] = d[i+1];
@@ -66,7 +65,7 @@ public static class main{
             }
         }
 
-        // We use the midpoint on each interval as the starting point of the root finding algorithm
+        // We use the midpoint on each interval as the starting point for the root finding algorithm
         double[] x0 = new double[d.size];
         for (int i=0; i<x0.Length; i++){
             x0[i] = (x_min[i] + x_max[i]) / 2;
@@ -88,7 +87,7 @@ public static class main{
 
     public static double root_finding(Func<double, double> f, Func<double, double> fp, double x, double x_min, double x_max, double eps=1e-6){
         /*
-        Finds a root of function f with derivative fp in the interval [x_min, x_max] using the initial guess x.
+        Finds a root of a function f with derivative fp in the interval [x_min, x_max] using the initial guess x.
         The method determines a root using the Newton-Raphson method.
         */
         if (Abs(x_min - x_max) < 1e-9){ // If x_min = x_max, then the root is in this point
@@ -127,7 +126,7 @@ public static class main{
         This method tests if "find_eigenvalues" correctly determines the eigenvalues by comparing it to the output of the jacobi algorithm from homework "eigenvalues".
         The tests are seperated into two categories. 
         First, we test if the code works correctly on random matrices of different sizes
-        Then, we test if the code works correctly in various special cases (negative sigma, trivial u vector, matrix D with degenerate eigenvalues).
+        Then, we test if the code works correctly in various special cases (negative sigma, trivial u vector and matrix D with degenerate eigenvalues).
         */
 
         var test_writer = new System.IO.StreamWriter("test_results.txt");
@@ -139,7 +138,7 @@ public static class main{
         // Diagonalization of different matrix sizes
         test_writer.WriteLine("DIAGONALIZE MATRICES OF DIFFERENT SIZES");
         test_writer.WriteLine($"The difference between the computed eigenvalues and the exact eigenvalues (should be close to 0).");
-        int[] sizes = new int[5] {2, 4, 8, 10, 100};    // The matrix sizes we test
+        int[] sizes = new int[5] {2, 4, 8, 10, 100};    // We test the following matrix sizes
         
         // Defining some quantities used below
         int size;
@@ -149,10 +148,10 @@ public static class main{
         double sigma;
         
         for (int i=0; i<sizes.Length; i++){ // Loop through all matrix sizes
-            size = sizes[i];    // Current matrix size
+            size = sizes[i];                                    // Current matrix size
             test_writer.Write($"Size = {size}:\t");
-            (D, u, sigma) = get_random_rank1_update(size, i);    // Returns random D, u and sigma
-            d_rank1 = find_eigenvalues(D, u, sigma);    // Applies the code to this situation
+            (D, u, sigma) = get_random_rank1_update(size, i);   // Returns random D, u and sigma
+            d_rank1 = find_eigenvalues(D, u, sigma);            // Applies the code to this situation
 
             // We compare the eigenvalues to the results of the Jacobi algorithm
             A = D + sigma*matrix.outer(u, u);
@@ -222,7 +221,7 @@ public static class main{
     public static void measure_performance(int N_rep=10){
         /*
         Runs the code with different systems sizes and measures the ellapsed time.
-        The algorithm should take O(n^2) operations, so we also expect to scale quadratically with time, i.e. O(t^2).
+        The algorithm should take O(n^2) operations, so we also expect the execution time scales quadratically with time, i.e. O(t^2).
         For comparison we also compute the time of the Jacobi algorithm which scales as O(n^3).
         */
 
@@ -242,14 +241,15 @@ public static class main{
 
         // Containers for storing the ellapsed times
         double[] rank1_times = new double[sizes.Length];    // Rank-1 update method, i.e. "find_eigenvalues" from above
-        double[] jac_times = new double[sizes.Length];      // Jacobi eigenvalue algorithm
+        double[] jac_times = new double[sizes.Length];      // Jacobi eigenvalue algorithm from a previous homework
 
-        for(int i=0; i<sizes.Length; i++){  // Loop through all matrix sizes
-            size = sizes[i];    // Current matrix size
+        for(int i=0; i<sizes.Length; i++){                      // Loop through all matrix sizes
+            size = sizes[i];                                    // Current matrix size
             (D, u, sigma) = get_random_rank1_update(size, i);   // Get a random matrix D, vector u and double sigma
-            A = D + sigma*matrix.outer(u, u);   // Compute the matrix we with to diagonalize
+            A = D + sigma*matrix.outer(u, u);                   // Compute the matrix we diagonalize
 
             // We measure the performance when diagonalizing the matrix A using the "rank-1 update method" and Jacobi algorithm
+            // To obtain higher accuracy, we average the ellapsed time over N_nep runs
 
             // Rank 1 update method
             for (int k=0; k<N_rep; k++){
@@ -260,7 +260,7 @@ public static class main{
             }
             rank1_times[i] /= (double)N_rep;
 
-            // Jacobi eigenvalue algortihm
+            // Jacobi eigenvalue algorithm
             for (int k=0; k<N_rep; k++){
                 jac = new jacobi(A);
                 stopwatch = Stopwatch.StartNew();
@@ -288,20 +288,19 @@ public static class main{
         Computes a random diagonal matrix D, random vector u and random double sigma.
         The random number generator uses the given seed.
         */
-        var rand = new Random(seed);    // Instance of Random to compute random doubles
+        var rand = new Random(seed);        // Random instance to compute random doubles
         double[] D_diag = new double[size]; // Diagonal elements of matrix D
         vector u = new vector(size);        // vector u
         for (int i=0; i<size; i++){         // Loop through all elements of D and u
             D_diag[i] = rand.NextDouble();  // Append a random double
             u[i] = rand.NextDouble();       // --||--
         }
-        Array.Sort(D_diag); // Sort the diagonal of D
+        Array.Sort(D_diag);                                 // Sort the diagonal of D
         matrix D = new matrix(size, size, mode:"zeros");    // Matrix with sizes everywhere
-        for (int i=0; i<size; i++){ // Inserts the diagonal elements in the diagonal of D
+        for (int i=0; i<size; i++){                         // Inserts the diagonal elements in the diagonal of D
             D[i, i] = D_diag[i];
         }
         double sigma = rand.NextDouble();   // Finds a random sigma value
         return (D, u, sigma);
-    }
-    
+    }   
 }
