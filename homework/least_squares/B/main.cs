@@ -38,17 +38,17 @@ public static class main{
 		}
 		Rutherford_Soddy.Close();
 		fit.Close();
-		
+	
 		double half_life = Log(1.0/2)/ls.c[1];
 		WriteLine($"The fitting coefficients are a = {Exp(ls.c[0])}, lambda = {-ls.c[1]}");
-		WriteLine("The Sigma matrix is = ");
+                WriteLine("The Sigma matrix is = ");
 		ls.Sigma.print();
-
 		WriteLine($"From the measurements we find the half life of Ra-224: {half_life} days");
 		WriteLine($"The correct half life of Ra-224 is 3.6 days");
 		double sigma_half_life = Sqrt(ls.Sigma[1, 1]) * Log(2)/(ls.c[1]*ls.c[1]);
 		WriteLine($"With uncertainties, the half life is between {half_life - sigma_half_life} and {half_life + sigma_half_life}");
 		WriteLine("The modern value of half life does not lie within the errorbars");
+
 		/* Adding uncertainties to fit coefficients */
 		var fit_uncertainties = new System.IO.StreamWriter("fit_uncertainties.txt", append:true);
 		for(int i=0; i<N_fit; i++){
@@ -57,3 +57,4 @@ public static class main{
 		fit_uncertainties.Close();
 	}
 }
+

@@ -1,22 +1,5 @@
-all:	output.txt fit.png fit_uncertainties.png
+all:	output.txt fit.png
 	cat output.txt
-
-fit_uncertainties.png: fit.txt fit_uncertainties.txt Rutherford_Soddy.txt Makefile
-	echo '\
-	set terminal png;\
-	set output "fit_uncertainties.png";\
-	set grid;\
-	set xlabel "$$t$$ [days]";\
-	set ylabel "Per-cent activity";\
-	set title "Original data of Rutherford and Sodder";\
-	set key outside;\
-	plot "fit_uncertainties.txt" using 1:2 with lines color blue lw 0.5 lt 5 title "Fit with uncertainty",\
-	"fit_uncertainties.txt" using 1:3 with lines color blue lw 0.5 lt 5 title "Fit with uncertainty",\
-	"fit_uncertainties.txt" using 1:4 with lines color blue lw 0.5 lt 5 title "Fit with uncertainty",\
-	"fit_uncertainties.txt" using 1:5 with lines color blue lw 0.5 lt 5 title "Fit with uncertainty",\
-	"fit.txt" with lines color black title "Exponential fit",\
-	"Rutherford_Soddy.txt" with yerrorbars color red title "Data with errorbars"\
-	' | pyxplot
 
 fit.png: fit.txt Rutherford_Soddy.txt Makefile
 	echo '\

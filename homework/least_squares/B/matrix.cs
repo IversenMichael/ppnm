@@ -30,7 +30,7 @@ public class matrix{
 
 	/* Minus */
 	public static matrix operator - (matrix A, matrix B){
-		return A + (B * (-1));
+		return A + ((-1.0) * B);
 	}
 	
 	/* Scalar multiplication */
@@ -42,6 +42,9 @@ public class matrix{
 			}
 		}
 		return C;
+	}
+	public static matrix operator * (double k, matrix A){
+		return A*k;
 	}
 	
 	/* Matrix multiplication */
